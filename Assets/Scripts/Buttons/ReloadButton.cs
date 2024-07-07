@@ -22,6 +22,6 @@ public class ReloadButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         _touchField.PointerId = eventData.pointerId;
         _touchField.PointerOld = eventData.position;
         foreach (Weapon shoting in _gun)
-            shoting.ButtonReload();
+            shoting.Reloading();
     }
 }
