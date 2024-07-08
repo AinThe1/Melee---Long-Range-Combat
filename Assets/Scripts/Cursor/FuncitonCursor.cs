@@ -1,20 +1,21 @@
-using System;
 using UnityEngine;
 
-[Serializable]
-public class FuncitonCursor
+public class FuncitonCursor : MonoBehaviour
 {
-    public static FuncitonCursor Instance = new FuncitonCursor();
+    [SerializeField] private bool _cursorLock;
 
+    private void Start() => LockCursor();
     public void LockCursor()
-    {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    public void UnlockCursor()
-    {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+    {     
+        if(_cursorLock)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 }

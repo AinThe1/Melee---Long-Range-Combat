@@ -3,20 +3,20 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [Header("Stats")]
-    [SerializeField] private int _currentMagBullets;
-    [SerializeField] private int _totalBullets;
-    [SerializeField] private int _wasteOfAmmoPerShot; // for counter
-    [SerializeField] private float _volumeForShoot;
-    [SerializeField] private float _volumeForHitAtEnemy;
-    [SerializeField] private float _volumeForHitAtObjects;
-    [SerializeField] private float _timeForReload;
-    [SerializeField] public float HoldClickForAttackTime = 1;
-    [SerializeField] private float _shakeIntensity;
-    [SerializeField] private float _timerShakeIntensity;
-    [SerializeField] private bool _isFullAuto;
+    [SerializeField] private int _currentMagBullets = 30;
+    [SerializeField] private int _totalBullets = 999;
+    [SerializeField] private int _wasteOfAmmoPerShot = 1; // for counter
+    [SerializeField] private float _volumeForShoot = .3f;
+    [SerializeField] private float _volumeForHitAtEnemy = .7f;
+    [SerializeField] private float _volumeForHitAtObjects = .1f;
+    [SerializeField] private float _timeForReload = 3;
+    [SerializeField] public float HoldClickForAttackTime = .1f;
+    [SerializeField] private float _shakeIntensity = 4;
+    [SerializeField] private float _timerShakeIntensity = .1f;
+    [SerializeField] private bool _isFullAuto = true;
 
     [Header("SpreadOfBullets")]
-    [SerializeField] private float _RandomSpread; // 0.05 the more value the more spread
+    [SerializeField] private float _RandomSpread = 0; // 0.05 the more value the more spread
     
     [Header("Sounds")]
     [SerializeField] private AudioSource _audioSourceForShoot;
@@ -85,7 +85,7 @@ public class Weapon : MonoBehaviour
             {
                 _vfxShoot.Play();             
                 HoldClickForAttackTime = Time.time + _startValueHoldClickForAttackTime;            
-                _audioSourceForShoot.pitch = UnityEngine.Random.Range(0.95f, 1.15f);
+                _audioSourceForShoot.pitch = UnityEngine.Random.Range(.95f, 1.15f);
                 _audioSourceForShoot.PlayOneShot(_clipForShoot, _volumeForShoot);
                 _snakeAimCamera.TryShakeCamera(_shakeIntensity, _timerShakeIntensity);
                 _currentMagBullets -= _wasteOfAmmoPerShot;
@@ -109,22 +109,22 @@ public class Weapon : MonoBehaviour
             if (hit.collider.CompareTag("Untagged"))
             {
                 Instantiate(_hitAtWood, hit.point, Quaternion.LookRotation(hit.normal));
-                _audioSourceForHitAtObjects.pitch = UnityEngine.Random.Range(0.95f, 1.15f);
+                _audioSourceForHitAtObjects.pitch = UnityEngine.Random.Range(.95f, 1.15f);
                 _audioSourceForHitAtObjects.PlayOneShot(_clipHitAtWood, _volumeForHitAtObjects);
             }
 
             else if (hit.collider.CompareTag("Metall"))
             {
                 Instantiate(_hitAtMetall, hit.point, Quaternion.LookRotation(hit.normal));
-                _audioSourceForHitAtObjects.pitch = UnityEngine.Random.Range(0.95f, 1.15f);
-                _audioSourceForHitAtObjects.PlayOneShot(_clipHitAtMetall, _volumeForHitAtObjects - 0.07f);
+                _audioSourceForHitAtObjects.pitch = UnityEngine.Random.Range(.95f, 1.15f);
+                _audioSourceForHitAtObjects.PlayOneShot(_clipHitAtMetall, _volumeForHitAtObjects - .07f);
             }
 
             else if (hit.collider.CompareTag("Enemy"))
             {
                 Instantiate(_hitAtWood, hit.point, Quaternion.LookRotation(hit.normal));
-                _audioSourceForHitAtObjects.pitch = UnityEngine.Random.Range(0.95f, 1.15f);
-                _audioSourceForHitAtObjects.PlayOneShot(_clipHitAtEnemy, _volumeForHitAtEnemy - 0.07f);
+                _audioSourceForHitAtObjects.pitch = UnityEngine.Random.Range(.95f, 1.15f);
+                _audioSourceForHitAtObjects.PlayOneShot(_clipHitAtEnemy, _volumeForHitAtEnemy - .07f);
                 _hitMarket.ImageHitMarker.enabled = true;
             }
         }

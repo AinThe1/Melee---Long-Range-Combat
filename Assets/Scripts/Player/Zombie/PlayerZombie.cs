@@ -26,10 +26,6 @@ public class PlayerZombie : MonoBehaviour
     [SerializeField] private float _holdClickForAttackTime = 1;
     private float _startValueHoldClickForAttackTime;
 
-    //buttons
-    private JumpButton _jumpButton;
-    private AttackButton _attackButton;
-
     [Header("Jump")]
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private LayerMask _ground;
@@ -82,8 +78,6 @@ public class PlayerZombie : MonoBehaviour
         _inputController = FindObjectOfType<InputController>();
         if (_inputController.InputIsPhone)
             _joystick = FindObjectOfType<Joystick>();
-        _jumpButton = FindObjectOfType<JumpButton>();
-        _attackButton = FindObjectOfType<AttackButton>();
     }
 
     private void Movement()
@@ -149,7 +143,7 @@ public class PlayerZombie : MonoBehaviour
         if (_attackCheckerForHuman == null) return;
         var InputMouseLeft = _inputSystemControl.Player.Shoot.IsPressed();
         //directonAtEnemy
-        if (_attackCheckerForHuman.AtZoneForAttack && (InputMouseLeft || _attackButton.IsAttack))
+        if (_attackCheckerForHuman.AtZoneForAttack && InputMouseLeft)
         {
             _directionAttack = _attackCheckerForHuman.Target.transform.position;
         }
