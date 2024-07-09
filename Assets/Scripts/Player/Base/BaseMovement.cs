@@ -6,11 +6,9 @@ public class BaseMovement : MonoBehaviour
     [SerializeField] private float _speedWalk = 2;
     [SerializeField] private float _speedRun = 7;
     [SerializeField] private int _jumpForce = 1500;
-    [SerializeField] private float _aimConstraintLiftSpeed = 3;
 
     [Header("CameraLookMovement")]
     [SerializeField] private Transform _transformMainCamera;
-    [SerializeField] private GameObject _bodyForRotate;
 
     [Header("Animations")]
     [SerializeField] private Animator _anim;
