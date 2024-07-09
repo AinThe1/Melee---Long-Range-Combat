@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AttackCheckerFromZombie : MonoBehaviour
+public class CheckerForAttack : MonoBehaviour
 {     
     [HideInInspector] public bool AtZoneForAttack;
     [HideInInspector] public Collider Target;

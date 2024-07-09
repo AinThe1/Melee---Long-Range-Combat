@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class BaseMovement : MonoBehaviour
 {
-    [Header("Stats")]
-    [SerializeField] private float _speedWalk = 2;
-    [SerializeField] private float _speedRun = 7;
+    [Header("Stats")]   
+    [SerializeField] private int _speedWalk = 2;
+    [SerializeField] private int _speedRun = 7;
     [SerializeField] private int _jumpForce = 1500;
 
     [Header("CameraLookMovement")]
@@ -22,11 +22,13 @@ public class BaseMovement : MonoBehaviour
     private PlayerControl _inputSystemControl;
     private Rigidbody _rb;
     private bool _onGround;
+    private int _speedMove = 2;
     private int _isRunningHash;
     private int _magnitudeHash;
     private int _onGroundHash;
     private Vector3 _functionMove;
     public Vector3 FunctionMove { get { return _functionMove; } private set{} }
+    public int SpeedMove { get { return _speedMove; }  set { _speedMove = value; } }
 
     private void Start() => MyStart();
     private void Update() => ChekingGround();
@@ -53,25 +55,26 @@ public class BaseMovement : MonoBehaviour
         var CameraRightNormalized = new Vector3(_transformMainCamera.transform.right.x, 0, _transformMainCamera.transform.right.z).normalized;
         _functionMove = _functionMove.x * CameraRightNormalized + _functionMove.z * CameraForwardNormalized;
         _functionMove.y = 0f; 
-        _rb.velocity = new Vector3(_functionMove.x * _speedWalk , _rb.velocity.y, _functionMove.z * _speedWalk);
+        _rb.velocity = new Vector3(_functionMove.x * _speedMove, _rb.velocity.y, _functionMove.z * _speedMove);
         
         //animations
         if (_functionMove.magnitude >= .05f)
             _anim.SetBool(_isRunningHash, true);
         else
-            _anim.SetBool(_isRunningHash, false);      
+            _anim.SetBool(_isRunningHash, false);
 
-        //motion switch
+        //Run
         if (Input.GetKey(KeyCode.LeftShift))
-            Run();
+        {
+            _speedMove = _speedRun;
+            _anim.SetFloat(_magnitudeHash, _functionMove.magnitude * 2f, _smoothBlend, Time.deltaTime);
+        }
         else
+        {
+            _speedMove = _speedWalk;
             _anim.SetFloat(_magnitudeHash, _functionMove.magnitude, _smoothBlend, Time.deltaTime);
-    }
-
-    private void Run()
-    {
-        _rb.velocity = new Vector3(_functionMove.x * _speedRun, _rb.velocity.y, _functionMove.z * _speedRun);
-        _anim.SetFloat(_magnitudeHash, _functionMove.magnitude * 2f , _smoothBlend, Time.deltaTime);
+        }
+            
     }
 
     private void ChekingGround()

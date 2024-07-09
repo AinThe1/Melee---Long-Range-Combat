@@ -13,7 +13,7 @@ public class LongRangeRotation : MonoBehaviour
     [SerializeField] private Transform _transformMainCamera;
     [SerializeField] private TransitionBetweenAiming _mainCamera;
     [SerializeField] private GameObject _bodyForRotate;
-    [SerializeField] private Weapon _gun;
+    [SerializeField] private RangedWeapon _gun;
 
     [Header("Animations")]
     [SerializeField] private Animator _anim;
@@ -28,7 +28,6 @@ public class LongRangeRotation : MonoBehaviour
     private Quaternion _playerRotation;
     private PlayerControl _inputSystemControl;
     private float _aimConstraintLift;
-    private float _directionLift;
     private BaseMovement _baseMovement;
     private Vector2 _currentInputVector;
     private Vector2 _smoothVectorVelocity;

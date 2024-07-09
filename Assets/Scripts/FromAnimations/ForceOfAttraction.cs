@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ForceOfAttraction : MonoBehaviour
 {
-    [SerializeField] private AttackCheckerFromZombie _attackChecker;     
+    [SerializeField] private CheckerForAttack _attackChecker;     
     [HideInInspector] public Vector3 Direction;
 
     private void ForceAsideEnemy() // using in Events(Animation)

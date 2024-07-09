@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GetDamageFromZombie : MonoBehaviour
 {
-    [SerializeField] private AttackCheckerFromZombie _attackCheckerFromZombie;   
+    [SerializeField] private CheckerForAttack _attackCheckerFromZombie;   
     [SerializeField] public float ForceDamage;
     [HideInInspector] public int IntForseDamage;
     [SerializeField] private AudioSource _audioSourceForHit;

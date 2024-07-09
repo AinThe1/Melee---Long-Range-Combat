@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class RangedWeapon : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] private int _currentMagBullets = 30;
@@ -42,7 +42,6 @@ public class Weapon : MonoBehaviour
     [HideInInspector] public int MagCapacity;
     [HideInInspector] public bool OnReloading = false;   
     private PlayerControl _inputSystemControl;
-    private float _bulletsShot;
     private float _startValueHoldClickForAttackTime;
     private float _reloadTimeLeft;
     private bool _canShoot = true;
@@ -128,7 +127,6 @@ public class Weapon : MonoBehaviour
                 _hitMarket.ImageHitMarker.enabled = true;
             }
         }
-        _bulletsShot--;
     }
 
     public void Reload()
