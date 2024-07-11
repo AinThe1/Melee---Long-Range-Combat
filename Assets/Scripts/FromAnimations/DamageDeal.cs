@@ -1,23 +1,20 @@
-using System;
 using UnityEngine;
 
-public class GetDamageFromZombie : MonoBehaviour
+public class DamageDeal : MonoBehaviour
 {
-    [SerializeField] private CheckerForAttack _attackCheckerFromZombie;   
-    [SerializeField] public float ForceDamage;
-    [HideInInspector] public int IntForseDamage;
+    [SerializeField] private CheckerForAttack _checkerForAttack;   
+    [SerializeField] private int _forceDamage;
     [SerializeField] private AudioSource _audioSourceForHit;
     [SerializeField] private AudioClip[] _clipsHit;
     [SerializeField] private float _volumeForHit;
 
-    private void Start() => IntForseDamage = Convert.ToInt32(ForceDamage);
 
     private void HitHuman()// using in animations Events
     {
-        if (_attackCheckerFromZombie.Target == null)
+        if (_checkerForAttack.Target == null )
             return;
 
-        if (_attackCheckerFromZombie.AtZoneForAttack)
+        if (_checkerForAttack.AtZoneForAttack)
         {
             var random = UnityEngine.Random.Range(0, _clipsHit.Length);
             _audioSourceForHit.PlayOneShot(_clipsHit[random], _volumeForHit);

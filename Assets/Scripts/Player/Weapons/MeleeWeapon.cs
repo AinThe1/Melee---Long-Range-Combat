@@ -13,13 +13,11 @@ public class MeleeWeapon : MonoBehaviour
     private bool _animAttackIsPlaying;
     private float _startValueHoldClickForAttackTime;
     private int _onAttackHash;
-    private int _currentSpeed;
     private int _stateAttack2Hash;
     private int _stateAttack3Hash;
 
-    public CheckerForAttack CheckerForAttack { get { return _checkerForAttack; } private set { } }
-    public Vector3 DirectionAttack { get { return _directionAttack; } private set {} }
-    public bool AnimAttackIsPlaying { get { return _animAttackIsPlaying;} private set {} }
+    public Vector3 DirectionAttack { get { return _directionAttack;}}
+    public bool AnimAttackIsPlaying { get { return _animAttackIsPlaying;}}
 
     private void OnEnable() => _inputSystemControl.Enable();
     private void OnDisable() => _inputSystemControl.Disable();
@@ -28,10 +26,9 @@ public class MeleeWeapon : MonoBehaviour
     private void Update() => MyUpdate();
 
     private void MyUpdate()
-    {
+    {   
         StateAnimAttack();
         AttackAnimation();
-        _currentSpeed = _baseMovement.SpeedMove;
     }
 
     private void MyStart()
@@ -39,40 +36,36 @@ public class MeleeWeapon : MonoBehaviour
         
         _startValueHoldClickForAttackTime = _holdClickForAttackTime;
         _onAttackHash = Animator.StringToHash("OnAttack");
-        _stateAttack2Hash = Animator.StringToHash("State2Attack");
-        _stateAttack3Hash = Animator.StringToHash("State3Attack");
+        _stateAttack2Hash = Animator.StringToHash("StateAttack2");
+        _stateAttack3Hash = Animator.StringToHash("StateAttack3");
     }
 
     private void AttackAnimation()
     {
         // damaging enemy at Events Animations (in the folder "events")
         if (_checkerForAttack == null) return;
-        var InputMouseLeft = _inputSystemControl.Player.Shoot.IsPressed();
+        var InputMouseLeft = _inputSystemControl.Player.Shoot.WasPressedThisFrame();
         //directonAtEnemy
         if (_checkerForAttack.AtZoneForAttack && InputMouseLeft)
-        {
             _directionAttack = _checkerForAttack.Target.transform.position;
-        }
     
         if (_checkerForAttack.Target != null)
             _forceOfAttraction.Direction = _directionAttack;
     
+        //var timer += Time.deltaTime
         //Animations
         if (InputMouseLeft)
-            _anim.SetBool(_onAttackHash, true);
-        else
         {
-            if (Time.time >= _holdClickForAttackTime)
-            {
-                _anim.SetBool(_onAttackHash, false);
-                _holdClickForAttackTime = Time.time + _startValueHoldClickForAttackTime;
-            }
-        }
+            _anim.SetBool(_onAttackHash, true);
+            CancelInvoke();
+        }        
+        else       
+            Invoke("DisabledAttackAnim", _holdClickForAttackTime);
+
     
-        //if (_animAttackIsPlaying)
-        //    _baseMovement.SpeedMove = 0;
-        //else
-        //    _baseMovement.SpeedMove = _currentSpeed;
+        if (_animAttackIsPlaying)
+            _baseMovement.SpeedMove = 0;
+    
     
         if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
             _anim.SetBool(_stateAttack2Hash, true);
@@ -85,12 +78,15 @@ public class MeleeWeapon : MonoBehaviour
             _anim.SetBool(_stateAttack3Hash, false);
     }
     
+    private void DisabledAttackAnim() => _anim.SetBool(_onAttackHash, false);
+
     private void StateAnimAttack()
     {
-        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1") || _anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2")
-           || _anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
+    
+        if ((_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1") || _anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2")
+           || _anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3")))
             _animAttackIsPlaying = true;
         else
             _animAttackIsPlaying = false;
-    }
+    }  
 }

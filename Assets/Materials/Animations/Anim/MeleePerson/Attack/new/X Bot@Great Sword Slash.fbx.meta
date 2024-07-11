@@ -1,34 +1,9 @@
 fileFormatVersion: 2
-guid: fa7d5078d676243459a6d95141adf190
+guid: 2b924d32d67719247a9502fade49da01
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: VanguardBodyMat
-    second: {fileID: 2100000, guid: dc22b1e7e77617945999dcef754fdd3a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Vanguard_VisorMat
-    second: {fileID: 2100000, guid: 890630e008401334aad7c89d4a413595, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: vanguard_diffuse1
-    second: {fileID: 2800000, guid: 4b7b1a2fe54f8aa4ab93994051f2c806, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: vanguard_normal
-    second: {fileID: 2800000, guid: bfd6112ce09dcb84eb8a6e6018ef946e, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: vanguard_specular
-    second: {fileID: 2800000, guid: c7de3c651e3237142a7eb0425d3e60b1, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -49,7 +24,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -118,13 +93,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

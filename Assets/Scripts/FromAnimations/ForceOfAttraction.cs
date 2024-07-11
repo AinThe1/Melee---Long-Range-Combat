@@ -13,6 +13,5 @@ public class ForceOfAttraction : MonoBehaviour
             transform.DOLookAt(Direction, .2f);
             transform.DOMove(Direction, .3f);
         }
-
     }
 }
