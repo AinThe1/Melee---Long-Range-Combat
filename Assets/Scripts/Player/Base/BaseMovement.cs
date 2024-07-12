@@ -56,23 +56,19 @@ public class BaseMovement : MonoBehaviour
         _functionMove = _functionMove.x * CameraRightNormalized + _functionMove.z * CameraForwardNormalized;
         _functionMove.y = 0f; 
         _rb.velocity = new Vector3(_functionMove.x * _speedMove, _rb.velocity.y, _functionMove.z * _speedMove);
-        
-        //animations
-        if (_functionMove.magnitude >= .05f)
-            _anim.SetBool(_isRunningHash, true);
-        else
-            _anim.SetBool(_isRunningHash, false);
 
         //Run
         if (Input.GetKey(KeyCode.LeftShift))
         {
             _speedMove = _speedRun;
             _anim.SetFloat(_magnitudeHash, _functionMove.magnitude * 2f, _smoothBlend, Time.deltaTime);
+            _anim.SetBool(_isRunningHash, true);
         }
         else
         {
             _speedMove = _speedWalk;
-            _anim.SetFloat(_magnitudeHash, _functionMove.magnitude, _smoothBlend, Time.deltaTime);
+            _anim.SetFloat(_magnitudeHash, _functionMove.magnitude, _smoothBlend, Time.deltaTime);            
+            _anim.SetBool(_isRunningHash, false);
         }
             
     }

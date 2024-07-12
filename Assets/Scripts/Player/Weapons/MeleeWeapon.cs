@@ -11,7 +11,6 @@ public class MeleeWeapon : MonoBehaviour
     private PlayerControl _inputSystemControl;
     private Vector3 _directionAttack;
     private bool _animAttackIsPlaying;
-    private float _startValueHoldClickForAttackTime;
     private int _onAttackHash;
     private int _stateAttack2Hash;
     private int _stateAttack3Hash;
@@ -33,8 +32,6 @@ public class MeleeWeapon : MonoBehaviour
 
     private void MyStart()
     {
-        
-        _startValueHoldClickForAttackTime = _holdClickForAttackTime;
         _onAttackHash = Animator.StringToHash("OnAttack");
         _stateAttack2Hash = Animator.StringToHash("StateAttack2");
         _stateAttack3Hash = Animator.StringToHash("StateAttack3");
@@ -82,9 +79,9 @@ public class MeleeWeapon : MonoBehaviour
 
     private void StateAnimAttack()
     {
-    
         if ((_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1") || _anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2")
-           || _anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3")))
+           || _anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3")) || _anim.GetCurrentAnimatorStateInfo(0).IsName("SlideSlash") 
+           || _anim.GetCurrentAnimatorStateInfo(0).IsName("2Kslash"))
             _animAttackIsPlaying = true;
         else
             _animAttackIsPlaying = false;
