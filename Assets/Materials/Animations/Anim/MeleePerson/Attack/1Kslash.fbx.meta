@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0000413becdd2a34481c056ac5597163
+guid: 02896c37fc2e80a49b736c64bf50831c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: SlideSlash
-      takeName: mixamo.com
-      internalID: -203655887218126122
+      name: 1Kslash
+      takeName: Armature|Armature|mixamo.com|Layer0.001
+      internalID: 6165553400957861818
       firstFrame: 0
-      lastFrame: 64
+      lastFrame: 55
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -56,7 +56,28 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.10712097
+        functionName: PlaySoundKick
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 3bf430530e996c345b1f0d1a215905cd, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.31981984
+        functionName: PlaySoundStep
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: b2d9092e3e2c46046ba9263651c737bf, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.8063063
+        functionName: PlaySoundStep
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: b2d9092e3e2c46046ba9263651c737bf, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

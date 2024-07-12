@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 67c9c158faf0b794cba6cbf8ba03bf7d
+guid: 7a9a3eedbe007fa4296e726145d5edd9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: 2hand Idle
-      takeName: mixamo.com
-      internalID: -203655887218126122
+      name: 2Kslash
+      takeName: Armature|Armature|mixamo.com|Layer0.002
+      internalID: 3591740854655688942
       firstFrame: 0
-      lastFrame: 143
+      lastFrame: 54
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -56,7 +56,42 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.09189189
+        functionName: PlaySoundKick
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 3bf430530e996c345b1f0d1a215905cd, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5225225
+        functionName: PlaySoundKick
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 3bf430530e996c345b1f0d1a215905cd, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.19144145
+        functionName: PlaySoundStep
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: b2d9092e3e2c46046ba9263651c737bf, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.3761261
+        functionName: PlaySoundStep
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: b2d9092e3e2c46046ba9263651c737bf, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7702702
+        functionName: PlaySoundStep
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: b2d9092e3e2c46046ba9263651c737bf, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

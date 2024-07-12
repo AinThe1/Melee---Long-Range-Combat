@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 939feb3890701204e9c2b9d2219cbad6
+guid: 7413502306b140d4db6b41b3301f0b1e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,7 +31,64 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: SlideSlash
+      takeName: Armature|Armature|mixamo.com|Layer0.003
+      internalID: 85483252243113165
+      firstFrame: 0
+      lastFrame: 64
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.3918919
+        functionName: PlaySoundKick
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 3bf430530e996c345b1f0d1a215905cd, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5202703
+        functionName: PlaySoundStep
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: b2d9092e3e2c46046ba9263651c737bf, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9391892
+        functionName: PlaySoundStep
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: b2d9092e3e2c46046ba9263651c737bf, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.1554054
+        functionName: PlaySoundSlide
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7464c91910a2d5347a261a99b0cbdfef, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
