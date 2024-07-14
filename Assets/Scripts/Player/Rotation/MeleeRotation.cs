@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class MeleeRotation : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class MeleeRotation : MonoBehaviour
     [SerializeField] private CheckerForAttack _checkerForAttack;
     [SerializeField] private BaseMovement _baseMovement;
     [SerializeField] private GameObject _bodyForRotate;
+    [SerializeField] private ImpactDirection _impactDirection;
+    [SerializeField] private Rig _rightArmRig;
 
     private Quaternion _playerRotation;
 
@@ -14,15 +17,23 @@ public class MeleeRotation : MonoBehaviour
 
     private void Rotation()
     {
-        if (_meleeWeapon.AnimAttackIsPlaying == false && _baseMovement.FunctionMove.magnitude >= 0.05f)
+        if ((_meleeWeapon.AnimAttackIsPlaying == false || _impactDirection.CanDirectPlayerAttack) && _baseMovement.FunctionMove.magnitude >= 0.05f)
             _playerRotation = Quaternion.LookRotation(_baseMovement.FunctionMove, Vector3.up);
-    
-        if (_meleeWeapon.AnimAttackIsPlaying == true && _meleeWeapon.DirectionAttack != Vector3.zero && _checkerForAttack.Target != null)
-        {
-            Vector3 direction = (_checkerForAttack.Target.transform.position - transform.position).normalized;
-            _playerRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        }
 
+        //if (_meleeWeapon.AnimAttackIsPlaying == true && _meleeWeapon.DirectionAttack != Vector3.zero && _checkerForAttack.Target != null)
+        //{
+        //    Vector3 direction = (_checkerForAttack.Target.transform.position - transform.position).normalized;
+        //    _playerRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        //}
         _bodyForRotate.transform.rotation = Quaternion.Lerp(_bodyForRotate.transform.rotation, _playerRotation, _freeSpeedRotate * Time.deltaTime);
+        ArmRigSwitchChecher();
+    }
+    
+    private void ArmRigSwitchChecher()
+    {    
+        if (_baseMovement.OnGround)
+            _rightArmRig.weight += Time.deltaTime * 3;
+        else
+            _rightArmRig.weight = 0;   
     }
 }

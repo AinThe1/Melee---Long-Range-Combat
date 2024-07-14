@@ -6,7 +6,7 @@ public class LongRangeRotation : MonoBehaviour
     [Header("Stats")]
     [SerializeField] private float _freeSpeedRotate = 10;
     [SerializeField] private float _aimSpeedRotate = 20;
-    [SerializeField] private float _aimConstraintLiftSpeed = 3;
+    [SerializeField] private float _smoothSpineRigSpeed = 3;
     [SerializeField] private float _directionLiftSpeed = 25;
 
     [Header("CameraLookMovement")]
@@ -104,8 +104,12 @@ public class LongRangeRotation : MonoBehaviour
     {
         var GunDown = new Vector3(10, 50, 20);
         var GunUp = new Vector3(0, 42, 0);
-        if (_baseMovement.FunctionMove.magnitude >= .05f && !Input.GetKey(KeyCode.S)) _aimConstraintLift -= Time.deltaTime * _aimConstraintLiftSpeed;
-        else _aimConstraintLift += Time.deltaTime * _aimConstraintLiftSpeed;
+
+        if (_baseMovement.FunctionMove.magnitude >= .05f && !Input.GetKey(KeyCode.S)) 
+            _aimConstraintLift -= Time.deltaTime * _smoothSpineRigSpeed;
+        else 
+            _aimConstraintLift += Time.deltaTime * _smoothSpineRigSpeed;
+
         if (_aimConstraintLift > 1) _aimConstraintLift = 1;
         if (_aimConstraintLift < 0) _aimConstraintLift = 0;
         

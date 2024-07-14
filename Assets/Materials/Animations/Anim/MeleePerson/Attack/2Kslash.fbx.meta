@@ -64,13 +64,6 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.5225225
-        functionName: PlaySoundKick
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 3bf430530e996c345b1f0d1a215905cd, type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       - time: 0.19144145
         functionName: PlaySoundStep
         data: 
@@ -82,6 +75,20 @@ ModelImporter:
         functionName: PlaySoundStep
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: b2d9092e3e2c46046ba9263651c737bf, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.45186335
+        functionName: ForceImpactDirection
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 2d820a473f4c39a469aa5efd2dff3b9f, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5225225
+        functionName: PlaySoundKick
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 3bf430530e996c345b1f0d1a215905cd, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

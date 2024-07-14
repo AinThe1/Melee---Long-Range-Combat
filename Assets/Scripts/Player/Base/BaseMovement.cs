@@ -27,7 +27,10 @@ public class BaseMovement : MonoBehaviour
     private int _magnitudeHash;
     private int _onGroundHash;
     private Vector3 _functionMove;
-    public Vector3 FunctionMove { get { return _functionMove; }}
+
+    public int JumpForce { get { return _jumpForce; } set { _jumpForce = value; } }
+    public bool OnGround { get { return _onGround; } }
+    public Vector3 FunctionMove { get { return _functionMove; } }
     public int SpeedMove { get { return _speedMove; }  set { _speedMove = value; } }
 
     private void Start() => MyStart();

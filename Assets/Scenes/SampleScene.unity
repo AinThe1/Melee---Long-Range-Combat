@@ -8341,8 +8341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d820a473f4c39a469aa5efd2dff3b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackChecker: {fileID: 3116723002065869049}
-  Direction: {x: 0, y: 0, z: 0}
 --- !u!95 &1799383930 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: fa7d5078d676243459a6d95141adf190, type: 3}
@@ -10679,6 +10677,8 @@ MonoBehaviour:
   _checkerForAttack: {fileID: 3116723002065869049}
   _baseMovement: {fileID: 9069221140160571909}
   _bodyForRotate: {fileID: 1799383913}
+  _impactDirection: {fileID: 1799383928}
+  _rightArmRig: {fileID: 1918930392}
 --- !u!114 &1598286814541356358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10755,7 +10755,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1123840011727138338}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.07820146, y: 0.63956875, z: -0.12883104, w: 0.7538163}
+  m_LocalRotation: {x: -0.07820145, y: 0.63956875, z: -0.12883104, w: 0.7538163}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

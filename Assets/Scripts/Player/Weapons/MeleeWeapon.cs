@@ -5,7 +5,7 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField] private BaseMovement _baseMovement;
     [SerializeField] private Animator _anim;
     [SerializeField] private CheckerForAttack _checkerForAttack;
-    [SerializeField] private ForceOfAttraction _forceOfAttraction;
+    [SerializeField] private ImpactDirection _forceOfAttraction;
     [SerializeField] private float _holdClickForAttackTime = 1;
 
     private PlayerControl _inputSystemControl;
@@ -14,6 +14,7 @@ public class MeleeWeapon : MonoBehaviour
     private int _onAttackHash;
     private int _stateAttack2Hash;
     private int _stateAttack3Hash;
+    private int _startJumpForce;
 
     public Vector3 DirectionAttack { get { return _directionAttack;}}
     public bool AnimAttackIsPlaying { get { return _animAttackIsPlaying;}}
@@ -32,6 +33,7 @@ public class MeleeWeapon : MonoBehaviour
 
     private void MyStart()
     {
+        _startJumpForce = _baseMovement.JumpForce;
         _onAttackHash = Animator.StringToHash("OnAttack");
         _stateAttack2Hash = Animator.StringToHash("StateAttack2");
         _stateAttack3Hash = Animator.StringToHash("StateAttack3");
@@ -39,17 +41,14 @@ public class MeleeWeapon : MonoBehaviour
 
     private void AttackAnimation()
     {
-        // damaging enemy at Events Animations (in the folder "events")
+       
+
         if (_checkerForAttack == null) return;
         var InputMouseLeft = _inputSystemControl.Player.Shoot.WasPressedThisFrame();
         //directonAtEnemy
         if (_checkerForAttack.AtZoneForAttack && InputMouseLeft)
             _directionAttack = _checkerForAttack.Target.transform.position;
-    
-        if (_checkerForAttack.Target != null)
-            _forceOfAttraction.Direction = _directionAttack;
-    
-        //var timer += Time.deltaTime
+
         //Animations
         if (InputMouseLeft)
         {
@@ -61,9 +60,13 @@ public class MeleeWeapon : MonoBehaviour
 
     
         if (_animAttackIsPlaying)
+        {
             _baseMovement.SpeedMove = 0;
-    
-    
+            _baseMovement.JumpForce = 0;
+        }
+        else
+            _baseMovement.JumpForce = _startJumpForce;
+
         if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
             _anim.SetBool(_stateAttack2Hash, true);
         else
