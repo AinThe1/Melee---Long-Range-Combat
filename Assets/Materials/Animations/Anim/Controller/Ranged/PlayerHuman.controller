@@ -136,7 +136,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: -1177994849439776268}
-    m_Threshold: 1.5
+    m_Threshold: 2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -145,7 +145,7 @@ BlendTree:
   m_BlendParameter: Magnitude
   m_BlendParameterY: Blend
   m_MinThreshold: 1
-  m_MaxThreshold: 1.5
+  m_MaxThreshold: 2
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
@@ -416,12 +416,12 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsRunning
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsAim
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: Magnitude
+    m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8409234822407996542}
   m_Solo: 0

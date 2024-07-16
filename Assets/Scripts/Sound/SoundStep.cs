@@ -11,5 +11,6 @@ public class SoundStep : MonoBehaviour
     {
         var randomStepSound = UnityEngine.Random.Range(0, _clipsForStep.Length);
         _audioSourceForStep.PlayOneShot(_clipsForStep[randomStepSound], _volumeForStep);
+        Debug.Log("step");
     }
 }

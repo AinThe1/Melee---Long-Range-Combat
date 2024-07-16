@@ -7,7 +7,7 @@ public class LongRangeRotation : MonoBehaviour
     [SerializeField] private float _freeSpeedRotate = 10;
     [SerializeField] private float _aimSpeedRotate = 20;
     [SerializeField] private float _smoothSpineRigSpeed = 3;
-    [SerializeField] private float _directionLiftSpeed = 25;
+    [SerializeField] private float _directionLiftSpeed = 20;
 
     [Header("CameraLookMovement")]
     [SerializeField] private Transform _transformMainCamera;
