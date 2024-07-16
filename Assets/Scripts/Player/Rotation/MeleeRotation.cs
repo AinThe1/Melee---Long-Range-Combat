@@ -17,16 +17,16 @@ public class MeleeRotation : MonoBehaviour
 
     private void Rotation()
     {
-        if ((_meleeWeapon.AnimAttackIsPlaying == false || _impactDirection.CanDirectPlayerAttack) && _baseMovement.FunctionMove.magnitude >= 0.05f)
-            _playerRotation = Quaternion.LookRotation(_baseMovement.FunctionMove, Vector3.up);
+         if ((_meleeWeapon.AnimAttackIsPlaying == false || _impactDirection.CanDirectPlayerAttack) && _baseMovement.FunctionMove.magnitude > 1f)
+             _playerRotation = Quaternion.LookRotation(new Vector3(_baseMovement.FunctionMove.x,0,_baseMovement.FunctionMove.z), Vector3.up);
 
-        //if (_meleeWeapon.AnimAttackIsPlaying == true && _meleeWeapon.DirectionAttack != Vector3.zero && _checkerForAttack.Target != null)
-        //{
-        //    Vector3 direction = (_checkerForAttack.Target.transform.position - transform.position).normalized;
-        //    _playerRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        //}
-        _bodyForRotate.transform.rotation = Quaternion.Lerp(_bodyForRotate.transform.rotation, _playerRotation, _freeSpeedRotate * Time.deltaTime);
-        ArmRigSwitchChecher();
+         //if (_meleeWeapon.AnimAttackIsPlaying == true && _meleeWeapon.DirectionAttack != Vector3.zero && _checkerForAttack.Target != null)
+         //{
+         //    Vector3 direction = (_checkerForAttack.Target.transform.position - transform.position).normalized;
+         //    _playerRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+         //}
+         _bodyForRotate.transform.rotation = Quaternion.Lerp(_bodyForRotate.transform.rotation, _playerRotation, _freeSpeedRotate * Time.deltaTime);
+         ArmRigSwitchChecher();
     }
     
     private void ArmRigSwitchChecher()

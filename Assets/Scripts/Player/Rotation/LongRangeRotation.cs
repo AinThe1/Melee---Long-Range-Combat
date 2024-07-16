@@ -76,9 +76,9 @@ public class LongRangeRotation : MonoBehaviour
         }
 
         //direct player while its idle (work with first if)
-        else if (_baseMovement.FunctionMove.magnitude >= .05f && _gun.OnReloading == false)
+        else if (_baseMovement.FunctionMove.magnitude >= 1.05f && _gun.OnReloading == false)
         {
-            _playerRotation = Quaternion.LookRotation(_baseMovement.FunctionMove, Vector3.up);
+            _playerRotation = Quaternion.LookRotation(new Vector3(_baseMovement.FunctionMove.x, 0, _baseMovement.FunctionMove.z), Vector3.up);
             Debug.Log("3");
         }
 
@@ -89,7 +89,7 @@ public class LongRangeRotation : MonoBehaviour
             _targetRigWeight = 0;
             _mainCamera.ExitAiming();
             if (_baseMovement.FunctionMove != Vector3.zero)
-                _playerRotation = Quaternion.LookRotation(_baseMovement.FunctionMove, Vector3.up);
+                _playerRotation = Quaternion.LookRotation(new Vector3(_baseMovement.FunctionMove.x, 0, _baseMovement.FunctionMove.z), Vector3.up);
             currentSpeedRotation = _freeSpeedRotate;
             Debug.Log("4");
         }
@@ -105,7 +105,7 @@ public class LongRangeRotation : MonoBehaviour
         var GunDown = new Vector3(10, 50, 20);
         var GunUp = new Vector3(0, 42, 0);
 
-        if (_baseMovement.FunctionMove.magnitude >= .05f && !Input.GetKey(KeyCode.S)) 
+        if (_baseMovement.FunctionMove.magnitude >= 1.05f && !Input.GetKey(KeyCode.S)) 
             _aimConstraintLift -= Time.deltaTime * _smoothSpineRigSpeed;
         else 
             _aimConstraintLift += Time.deltaTime * _smoothSpineRigSpeed;
