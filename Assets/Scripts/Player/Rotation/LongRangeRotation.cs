@@ -7,7 +7,7 @@ public class LongRangeRotation : MonoBehaviour
     [SerializeField] private float _freeSpeedRotate = 10;
     [SerializeField] private float _aimSpeedRotate = 20;
     [SerializeField] private float _smoothSpineRigSpeed = 3;
-    [SerializeField] private float _directionLiftSpeed = 20;
+    [SerializeField] private float _directionAimLiftSpeed = 20;
 
     [Header("CameraLookMovement")]
     [SerializeField] private Transform _transformMainCamera;
@@ -60,7 +60,6 @@ public class LongRangeRotation : MonoBehaviour
             _mainCamera.ExitAiming();
             _anim.SetBool(_isAimHash, false);
             currentSpeedRotation = _freeSpeedRotate;
-            Debug.Log("1");
         }
 
         //360 rotation with direct player at camera
@@ -72,15 +71,11 @@ public class LongRangeRotation : MonoBehaviour
             _mainCamera.Aiming();           
             _anim.SetBool(_isAimHash, true);         
             currentSpeedRotation = _aimSpeedRotate;
-            Debug.Log("2");
         }
 
         //direct player while its idle (work with first if)
-        else if (_baseMovement.FunctionMove.magnitude >= 1.05f && _gun.OnReloading == false)
-        {
+        else if (_baseMovement.FunctionMove.magnitude >= .05f && _gun.OnReloading == false)
             _playerRotation = Quaternion.LookRotation(new Vector3(_baseMovement.FunctionMove.x, 0, _baseMovement.FunctionMove.z), Vector3.up);
-            Debug.Log("3");
-        }
 
         //360 rotation without direct player at camera
         if (_gun.OnReloading == true)
@@ -91,7 +86,6 @@ public class LongRangeRotation : MonoBehaviour
             if (_baseMovement.FunctionMove != Vector3.zero)
                 _playerRotation = Quaternion.LookRotation(new Vector3(_baseMovement.FunctionMove.x, 0, _baseMovement.FunctionMove.z), Vector3.up);
             currentSpeedRotation = _freeSpeedRotate;
-            Debug.Log("4");
         }
 
         SmoothAimMovement();
@@ -105,7 +99,7 @@ public class LongRangeRotation : MonoBehaviour
         var GunDown = new Vector3(10, 50, 20);
         var GunUp = new Vector3(0, 42, 0);
 
-        if (_baseMovement.FunctionMove.magnitude >= 1.05f && !Input.GetKey(KeyCode.S)) 
+        if (_baseMovement.FunctionMove.magnitude >= .05f && !Input.GetKey(KeyCode.S)) 
             _aimConstraintLift -= Time.deltaTime * _smoothSpineRigSpeed;
         else 
             _aimConstraintLift += Time.deltaTime * _smoothSpineRigSpeed;
@@ -119,7 +113,7 @@ public class LongRangeRotation : MonoBehaviour
     private void SmoothAimMovement()
     {
         var input = _inputSystemControl.Player.Movement.ReadValue<Vector2>();
-        _currentInputVector = Vector2.SmoothDamp(_currentInputVector, input, ref _smoothVectorVelocity, _directionLiftSpeed * Time.deltaTime);
+        _currentInputVector = Vector2.SmoothDamp(_currentInputVector, input, ref _smoothVectorVelocity, _directionAimLiftSpeed * Time.deltaTime);
         _anim.SetFloat(_isHorizontalHash, _currentInputVector.x);
         _anim.SetFloat(_isVerticalHash, _currentInputVector.y);
     }
