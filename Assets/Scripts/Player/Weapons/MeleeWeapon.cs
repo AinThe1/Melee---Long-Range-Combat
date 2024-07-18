@@ -14,7 +14,7 @@ public class MeleeWeapon : MonoBehaviour
     private int _onAttackHash;
     private int _stateAttack2Hash;
     private int _stateAttack3Hash;
-    private int _startJumpForce;
+    private float _startJumpForce;
 
     public Vector3 DirectionAttack { get { return _directionAttack;}}
     public bool AnimAttackIsPlaying { get { return _animAttackIsPlaying;}}

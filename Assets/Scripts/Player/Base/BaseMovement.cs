@@ -5,7 +5,7 @@ public class BaseMovement : MonoBehaviour
     [Header("Stats")]   
     [SerializeField] private float _speedWalk = 2;
     [SerializeField] private float _speedRun = 7;
-    [SerializeField] private int _jumpForce = 1500;
+    [SerializeField] private float _jumpForce = 1500;
     [SerializeField] private float gravityMultiplier = 3.0f;
     
     [Header("CameraLookMovement")]
@@ -32,7 +32,7 @@ public class BaseMovement : MonoBehaviour
     private bool _onGround;
 
     public bool OnGround { get { return _onGround; } }
-    public int JumpForce { get { return _jumpForce; } set { _jumpForce = value; } }
+    public float JumpForce { get { return _jumpForce; } set { _jumpForce = value; } }
     public Vector3 FunctionMove { get { return _functionMove; } }
     public float SpeedMove { get { return _speedMove; }  set { _speedMove = value; } }
 
@@ -96,9 +96,14 @@ public class BaseMovement : MonoBehaviour
 
     private void Jump()
     {
-        var ButtonJump = _inputSystemControl.Player.Jump.IsPressed();
+        var ButtonJump = _inputSystemControl.Player.Jump.WasPressedThisFrame();
         if (ButtonJump && _onGround)
-        _rb.AddForce(Vector3.up * _jumpForce * Time.deltaTime);
+        {
+            _velocity += _jumpForce + 1;
+
+            Debug.Log("asdasd");
+        }
+            
     }
 
     private void ApplyGravity()
@@ -106,7 +111,7 @@ public class BaseMovement : MonoBehaviour
         if (_onGround && _velocity < 0.0f)
             _velocity = -1.0f;
         else
-            _velocity += _gravity * gravityMultiplier / 15 * Time.deltaTime;
+            _velocity += _gravity * gravityMultiplier * Time.deltaTime;
 
         _functionMove.y = _velocity * Time.deltaTime;
     }
