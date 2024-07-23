@@ -5,9 +5,9 @@ public class BaseMovement : MonoBehaviour
     [Header("Stats")]   
     [SerializeField] private float _speedWalk = 2;
     [SerializeField] private float _speedRun = 7;
-    [SerializeField] private float _jumpForce = 1500;
-    [SerializeField] private float gravityMultiplier = 3.0f;
-    
+    [SerializeField] private float _jumpForce = 0.5f;
+    [SerializeField] private float _gravityMultiplier = 0.1f;
+    [SerializeField] private float _jumpRespite = 1;
     [Header("CameraLookMovement")]
     [SerializeField] private Transform _transformMainCamera;
 
@@ -22,14 +22,15 @@ public class BaseMovement : MonoBehaviour
 
     private PlayerControl _inputSystemControl;
     private CharacterController _characterController;
-    private Rigidbody _rb;
     private float _speedMove = 2;
     private int _magnitudeHash;
     private int _onGroundHash;
     private Vector3 _functionMove;
+    private Vector3 _gravityVelocity;
     private float _velocity;
     private float _gravity = -9.81f;
     private bool _onGround;
+    private bool _canJump = true;
 
     public bool OnGround { get { return _onGround; } }
     public float JumpForce { get { return _jumpForce; } set { _jumpForce = value; } }
@@ -51,7 +52,6 @@ public class BaseMovement : MonoBehaviour
     private void MyStart()
     {
         _characterController = GetComponent<CharacterController>();
-        _rb = GetComponent<Rigidbody>();
         _magnitudeHash = Animator.StringToHash("Magnitude");
         _onGroundHash = Animator.StringToHash("OnGround");      
     }
@@ -59,7 +59,6 @@ public class BaseMovement : MonoBehaviour
     private void Movement()
     {
         //input
-        var ButtonJump = _inputSystemControl.Player.Jump.IsPressed();
         var input = _inputSystemControl.Player.Movement.ReadValue<Vector2>();
         _functionMove = new Vector3(input.x, 0, input.y);
 
@@ -69,10 +68,11 @@ public class BaseMovement : MonoBehaviour
         _functionMove = _functionMove.x * CameraRightNormalized + _functionMove.z * CameraForwardNormalized;
 
         //movement
-        ApplyGravity();
-        var normalizedDirection = new Vector3(_functionMove.x * _speedMove * Time.deltaTime, _functionMove.y * 7, _functionMove.z * _speedMove * Time.deltaTime);
+        Jump();
+        Gravity();
+        var normalizedDirection = new Vector3(_functionMove.x * _speedMove * Time.deltaTime, _gravityVelocity.y, _functionMove.z * _speedMove * Time.deltaTime);
         _characterController.Move(normalizedDirection);
-
+       
         //Run
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -86,33 +86,34 @@ public class BaseMovement : MonoBehaviour
             _anim.SetFloat(_magnitudeHash, _functionMove.magnitude, _smoothBlend, Time.deltaTime);            
         }
     }
+   
 
     private void ChekingGround()
     {
         _onGround = Physics.CheckSphere(_groundCheck.position, _checkRadius, _ground);
-        _anim.SetBool(_onGroundHash, _onGround);
-        Jump();
+        _anim.SetBool(_onGroundHash, _onGround);    
     }
 
     private void Jump()
     {
         var ButtonJump = _inputSystemControl.Player.Jump.WasPressedThisFrame();
-        if (ButtonJump && _onGround)
+        if (ButtonJump && _onGround && _canJump)
         {
             _velocity += _jumpForce + 1;
-
-            Debug.Log("asdasd");
+            _canJump = false;
+            Invoke("CanJump", _jumpRespite);
         }
-            
     }
-
-    private void ApplyGravity()
-    {
+    
+    private void CanJump() => _canJump = true;
+    
+   private void Gravity()
+   {
         if (_onGround && _velocity < 0.0f)
             _velocity = -1.0f;
         else
-            _velocity += _gravity * gravityMultiplier * Time.deltaTime;
+            _velocity += _gravity * _gravityMultiplier * Time.deltaTime;
 
-        _functionMove.y = _velocity * Time.deltaTime;
-    }
+        _gravityVelocity.y = _velocity * Time.deltaTime * 7;
+   }
 }
