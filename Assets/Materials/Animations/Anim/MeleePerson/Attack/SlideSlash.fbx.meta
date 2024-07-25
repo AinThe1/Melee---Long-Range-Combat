@@ -37,7 +37,7 @@ ModelImporter:
       takeName: Armature|Armature|mixamo.com|Layer0.003
       internalID: 85483252243113165
       firstFrame: 0
-      lastFrame: 64
+      lastFrame: 52
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -57,6 +57,20 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0
+        functionName: ForceImpactDirection
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 2d820a473f4c39a469aa5efd2dff3b9f, type: 3}
+        floatParameter: 1
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.1554054
+        functionName: PlaySoundSlide
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7464c91910a2d5347a261a99b0cbdfef, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.3918919
         functionName: PlaySoundKick
         data: 
@@ -71,17 +85,17 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.6203704
+        functionName: ForceImpactDirection
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 2d820a473f4c39a469aa5efd2dff3b9f, type: 3}
+        floatParameter: 0.5
+        intParameter: 0
+        messageOptions: 0
       - time: 0.9391892
         functionName: PlaySoundStep
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: b2d9092e3e2c46046ba9263651c737bf, type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.1554054
-        functionName: PlaySoundSlide
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 7464c91910a2d5347a261a99b0cbdfef, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

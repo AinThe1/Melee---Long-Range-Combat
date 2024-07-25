@@ -5,8 +5,9 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField] private BaseMovement _baseMovement;
     [SerializeField] private Animator _anim;
     [SerializeField] private CheckerForAttack _checkerForAttack;
-    [SerializeField] private ImpactDirection _forceOfAttraction;
-    [SerializeField] private float _holdClickForAttackTime = 1;
+    [SerializeField] private ImpactDirection _impactDirection;
+    [SerializeField] private MeleeRotation _meleeRotation;
+    [SerializeField] private float _holdClickForAttackTime = 1;   
 
     private PlayerControl _inputSystemControl;
     private Vector3 _directionAttack;
@@ -40,9 +41,7 @@ public class MeleeWeapon : MonoBehaviour
     }
 
     private void AttackAnimation()
-    {
-       
-
+    {     
         if (_checkerForAttack == null) return;
         var InputMouseLeft = _inputSystemControl.Player.Shoot.WasPressedThisFrame();
         //directonAtEnemy
@@ -51,7 +50,7 @@ public class MeleeWeapon : MonoBehaviour
 
         //Animations
         if (InputMouseLeft)
-        {
+        {          
             _anim.SetBool(_onAttackHash, true);
             CancelInvoke();
         }        
@@ -67,7 +66,7 @@ public class MeleeWeapon : MonoBehaviour
         else
             _baseMovement.JumpForce = _startJumpForce;
 
-        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
+        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1") || _anim.GetCurrentAnimatorStateInfo(0).IsName("SlideSlash"))
             _anim.SetBool(_stateAttack2Hash, true);
         else
             _anim.SetBool(_stateAttack2Hash, false);

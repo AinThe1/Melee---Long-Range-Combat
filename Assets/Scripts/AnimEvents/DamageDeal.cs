@@ -9,7 +9,7 @@ public class DamageDeal : MonoBehaviour
     [SerializeField] private float _volumeForHit;
 
 
-    private void HitHuman()// using in animations Events
+    private void HitTarget()// using in animations Events
     {
         if (_checkerForAttack.Target == null )
             return;

@@ -57,6 +57,13 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0
+        functionName: ForceImpactDirection
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 2d820a473f4c39a469aa5efd2dff3b9f, type: 3}
+        floatParameter: 0.3
+        intParameter: 0
+        messageOptions: 0
       - time: 0.10712097
         functionName: PlaySoundKick
         data: 
@@ -68,13 +75,6 @@ ModelImporter:
         functionName: PlaySoundStep
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: b2d9092e3e2c46046ba9263651c737bf, type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.4751553
-        functionName: ForceImpactDirection
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 2d820a473f4c39a469aa5efd2dff3b9f, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

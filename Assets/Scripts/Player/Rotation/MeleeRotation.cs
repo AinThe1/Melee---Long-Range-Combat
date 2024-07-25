@@ -17,8 +17,8 @@ public class MeleeRotation : MonoBehaviour
 
     private void Rotation()
     {
-         if ((_meleeWeapon.AnimAttackIsPlaying == false || _impactDirection.CanDirectPlayerAttack) && _baseMovement.FunctionMove.magnitude > .5f)
-             _playerRotation = Quaternion.LookRotation(new Vector3(_baseMovement.FunctionMove.x,0,_baseMovement.FunctionMove.z), Vector3.up);
+         if ((_meleeWeapon.AnimAttackIsPlaying == false || _impactDirection.CanDirectPlayerAttack) && _baseMovement.PlayerDirection.magnitude > 0.5f)
+             _playerRotation = Quaternion.LookRotation(new Vector3(_baseMovement.PlayerDirection.x,0,_baseMovement.PlayerDirection.z), Vector3.up);
 
          _bodyForRotate.transform.rotation = Quaternion.Lerp(_bodyForRotate.transform.rotation, _playerRotation, _freeSpeedRotate * Time.deltaTime);
          ArmRigSwitchChecher();
