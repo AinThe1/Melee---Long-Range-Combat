@@ -10,24 +10,15 @@ public class CheckerForAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-       //if( _meleeWeapon.AnimAttackIsPlaying)
-       //
-       //{
-       //    _audioSourceForHit.pitch = UnityEngine.Random.Range(0.95f, 1.15f);
-       //    _audioSourceForHit.PlayOneShot(_clipsForHit, _volumeForHit);
-       //}
-
+       if(other.gameObject.CompareTag("Enemy") && _meleeWeapon.AnimAttackIsPlaying && _pauseSoundHitting)
+       {
+           _audioSourceForHit.pitch = UnityEngine.Random.Range(0.95f, 1.15f);
+           _audioSourceForHit.PlayOneShot(_clipsForHit, _volumeForHit);          
+            _pauseSoundHitting = false;
+            Debug.Log("hit");
+       }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-       //if (other.gameObject.TryGetComponent<Target>(out Target target))
-       //{
-       //    _pauseSoundHitting = false;
-       //    Invoke("UnpauseSoundHit", 0.4f);
-       //}
-       //
-    }
-
-    private void UnpauseSoundHit() => _pauseSoundHitting = true;
+    private void OnTriggerExit(Collider other) => Invoke("UnpauseHit", 0.4f);
+    private void UnpauseHit() => _pauseSoundHitting = true;
 }
