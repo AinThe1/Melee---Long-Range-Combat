@@ -61,7 +61,7 @@ ModelImporter:
         functionName: ForceImpactDirection
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 2d820a473f4c39a469aa5efd2dff3b9f, type: 3}
-        floatParameter: 0.3
+        floatParameter: 11
         intParameter: 0
         messageOptions: 0
       - time: 0.1304865
@@ -92,11 +92,11 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.5893186
+      - time: 0.5562477
         functionName: ForceImpactDirection
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 2d820a473f4c39a469aa5efd2dff3b9f, type: 3}
-        floatParameter: 0.2
+        floatParameter: 25
         intParameter: 0
         messageOptions: 0
       - time: 0.7893519

@@ -10,7 +10,7 @@ public class RangedWeapon : MonoBehaviour
     [SerializeField] private float _volumeForHitAtEnemy = .7f;
     [SerializeField] private float _volumeForHitAtObjects = .1f;
     [SerializeField] private float _timeForReload = 3;
-    [SerializeField] public float HoldClickForAttackTime = .1f;
+    [SerializeField] private float HoldClickForAttackTime = .1f;
     [SerializeField] private float _shakeIntensity = 4;
     [SerializeField] private float _timerShakeIntensity = .1f;
     [SerializeField] private bool _isFullAuto = true;
@@ -35,18 +35,19 @@ public class RangedWeapon : MonoBehaviour
     [SerializeField] private CameraShake _snakeAimCamera;
     [SerializeField] private Camera _camera;  
     [SerializeField] private Animator _anim;
-    [SerializeField] private LayerMask _layerCollision;
     [SerializeField] private HitMarker _hitMarket;
-
-    [HideInInspector] public int ScoreKills;
-    [HideInInspector] public int MagCapacity;
-    [HideInInspector] public bool OnReloading = false;   
+    [SerializeField] private LayerMask _layerCollision;
+    
+    private int _magCapacity;
+    private bool _onReloading = false;   
     private PlayerControl _inputSystemControl;
     private float _startValueHoldClickForAttackTime;
     private float _reloadTimeLeft;
     private bool _canShoot = true;
     private bool _canReload = true;
     private int _onReloadHash;
+
+    public bool OnReloading { get { return _onReloading; } }
 
     private void Update() => MyUpdate();
     private void Start() => MyStart();
@@ -66,7 +67,7 @@ public class RangedWeapon : MonoBehaviour
     private void MyStart()
     {       
         _onReloadHash = Animator.StringToHash("OnReload");
-        MagCapacity = _currentMagBullets;
+        _magCapacity = _currentMagBullets;
         _startValueHoldClickForAttackTime = HoldClickForAttackTime;
     }
 
@@ -131,7 +132,7 @@ public class RangedWeapon : MonoBehaviour
 
     public void Reload()
     {
-        var amount = Mathf.Min(MagCapacity - _currentMagBullets, _totalBullets);
+        var amount = Mathf.Min(_magCapacity - _currentMagBullets, _totalBullets);
         _totalBullets -= amount;
         _currentMagBullets += amount;
     }
@@ -141,7 +142,7 @@ public class RangedWeapon : MonoBehaviour
         //reloading
         if (_reloadTimeLeft > 0f)
         {
-            OnReloading = true;
+            _onReloading = true;
             _canShoot = false;
             _reloadTimeLeft -= dt;
             _anim.SetBool(_onReloadHash, true);
@@ -152,7 +153,7 @@ public class RangedWeapon : MonoBehaviour
             Reload();
             _reloadTimeLeft = 0f;
             _canShoot = true;
-            OnReloading = false;
+            _onReloading = false;
             _anim.SetBool(_onReloadHash, false);
         }          
 
@@ -162,7 +163,7 @@ public class RangedWeapon : MonoBehaviour
 
     public void Reloading()
     {
-        if (_canReload && _currentMagBullets < MagCapacity && _totalBullets > 0 && !OnReloading)
+        if (_canReload && _currentMagBullets < _magCapacity && _totalBullets > 0 && !_onReloading)
         {
             _reloadTimeLeft = _timeForReload;
             _soundReload.Play();

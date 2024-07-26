@@ -4,20 +4,17 @@ public class MeleeWeapon : MonoBehaviour
 {
     [SerializeField] private BaseMovement _baseMovement;
     [SerializeField] private Animator _anim;
-    [SerializeField] private CheckerForAttack _checkerForAttack;
     [SerializeField] private ImpactDirection _impactDirection;
     [SerializeField] private MeleeRotation _meleeRotation;
     [SerializeField] private float _holdClickForAttackTime = 1;   
 
     private PlayerControl _inputSystemControl;
-    private Vector3 _directionAttack;
     private bool _animAttackIsPlaying;
     private int _onAttackHash;
     private int _stateAttack2Hash;
     private int _stateAttack3Hash;
     private float _startJumpForce;
 
-    public Vector3 DirectionAttack { get { return _directionAttack;}}
     public bool AnimAttackIsPlaying { get { return _animAttackIsPlaying;}}
 
     private void OnEnable() => _inputSystemControl.Enable();
@@ -42,11 +39,7 @@ public class MeleeWeapon : MonoBehaviour
 
     private void AttackAnimation()
     {     
-        if (_checkerForAttack == null) return;
         var InputMouseLeft = _inputSystemControl.Player.Shoot.WasPressedThisFrame();
-        //directonAtEnemy
-        if (_checkerForAttack.AtZoneForAttack && InputMouseLeft)
-            _directionAttack = _checkerForAttack.Target.transform.position;
 
         //Animations
         if (InputMouseLeft)

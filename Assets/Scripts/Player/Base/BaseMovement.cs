@@ -4,7 +4,7 @@ public class BaseMovement : MonoBehaviour
 {
     [Header("Stats")]   
     [SerializeField] private float _speedWalk = 2;
-    [SerializeField] private float _speedRun = 7;
+    [SerializeField] private float _speedRun = 5;
     [SerializeField] private float _jumpForce = 1.3f;
     [SerializeField] private float _gravityMultiplier = 0.3f;
     [SerializeField] private float _jumpRespite = 0.5f;
