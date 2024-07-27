@@ -76,7 +76,7 @@ public class BaseMovement : MonoBehaviour
     private void Jump()
     {
         var ButtonJump = _inputSystemControl.Player.Jump.WasPressedThisFrame();
-        if (ButtonJump && _characterController.isGrounded && _canJump)
+        if (ButtonJump && _onGround && _canJump)
         {
             _velocity += _jumpForce + 1;
             _canJump = false;
