@@ -35,7 +35,7 @@ public class MeleeWeapon : MonoBehaviour
 
     private void AttackAnimation()
     {     
-        var InputMouseLeft = _inputSystemControl.Player.Shoot.WasPressedThisFrame();
+        var InputMouseLeft = _inputSystemControl.Player.Shoot.IsPressed();
 
         //Animations
         if (InputMouseLeft)
